@@ -6,6 +6,8 @@ export class Game {
 
   private _id: number;
   private _name: string;
+  private _developer;
+  private _weapons;
 
   constructor(values: Object = {}) {
     Object.assign(this, values);
@@ -25,5 +27,21 @@ export class Game {
 
   public set name(n: string) {
     this._name = n;
+  }
+
+  public get developer() {
+    return this._developer;
+  }
+
+  public set developer(d) {
+    this._developer = d;
+  }
+
+  public get weapons() {
+    return this._weapons;
+  }
+
+  public set weapons(w) {
+    this._weapons = w;
   }
 }

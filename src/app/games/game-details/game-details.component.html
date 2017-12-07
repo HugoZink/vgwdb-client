@@ -1,1 +1,7 @@
 <h1>{{ game.name }}</h1>
+<p>Developed by {{ game.developer.name }} in {{ game.developer.developed }}.</p>
+
+<p>Features the following weapons:</p>
+<ul>
+    <li *ngFor="let weapon of game.weapons">{{ weapon.name }} (as {{ weapon.ingameName }})</li>
+</ul>
