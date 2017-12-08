@@ -1,0 +1,10 @@
+<h2>{{ weapon.name }}</h2>
+
+<p>{{ weapon.description }}</p>
+
+<p>Designed in {{ weapon.designed }}.</p>
+
+<p>Appears in the following games:</p>
+<ul>
+  <li *ngFor="let game of weapon.games"><a routerLink="/games/{{ game.id }}">{{ game.name }} (as {{ game.ingameName }})</a></li>
+</ul>

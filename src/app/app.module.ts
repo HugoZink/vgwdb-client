@@ -1,4 +1,3 @@
-import { UserService } from './services/user.service';
 import { GameService } from './services/game.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -7,13 +6,17 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HttpModule, Http } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { HeaderComponent } from './components/header/header.component';
-import { GameListComponent } from './games/game-list/game-list.component';
-import { GameItemComponent } from './games/game-list/game-item/game-item.component';
-import { HttpClientModule } from '@angular/common/http';
-import { GameDetailsComponent } from './games/game-details/game-details.component';
+import { GameListComponent } from './components/games/game-list/game-list.component';
+import { GameItemComponent } from './components/games/game-list/game-item/game-item.component';
+import { GameDetailsComponent } from './components/games/game-details/game-details.component';
+import { WeaponListComponent } from './components/weapons/weapon-list/weapon-list.component';
+import { WeaponDetailsComponent } from './components/weapons/weapon-details/weapon-details.component';
+import { WeaponItemComponent } from './components/weapons/weapon-list/weapon-item/weapon-item.component';
+import { WeaponService } from './services/weapon.service';
 
 @NgModule({
   declarations: [
@@ -23,6 +26,9 @@ import { GameDetailsComponent } from './games/game-details/game-details.componen
     GameListComponent,
     GameItemComponent,
     GameDetailsComponent,
+    WeaponListComponent,
+    WeaponDetailsComponent,
+    WeaponItemComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,8 +39,8 @@ import { GameDetailsComponent } from './games/game-details/game-details.componen
     BrowserAnimationsModule
   ],
   providers: [
-    UserService,
-    GameService
+    GameService,
+    WeaponService
   ],
   bootstrap: [AppComponent]
 })

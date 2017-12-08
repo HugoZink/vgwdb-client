@@ -6,8 +6,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  title = 'Angular2 Starter';
-
   constructor() { }
 
   ngOnInit() {

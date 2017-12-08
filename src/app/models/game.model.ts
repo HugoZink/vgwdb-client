@@ -6,6 +6,7 @@ export class Game {
 
   private _id: number;
   private _name: string;
+  private _released: number;
   private _developer;
   private _weapons;
 
@@ -27,6 +28,14 @@ export class Game {
 
   public set name(n: string) {
     this._name = n;
+  }
+
+  public get released(): number {
+    return this._released;
+  }
+
+  public set released(y: number) {
+    this._released = y;
   }
 
   public get developer() {

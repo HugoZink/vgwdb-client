@@ -5,41 +5,41 @@ import { environment } from '../../environments/environment';
 import { Router, ActivatedRoute } from '@angular/router';
 import 'rxjs/add/operator/toPromise';
 import { Observable } from 'rxjs/Observable';
-import { Game } from '../models/game.model';
+import { Weapon } from '../models/weapon.model';
 
 @Injectable()
-export class GameService {
+export class WeaponService {
 
   private headers = new Headers({ 'Content-Type': 'application/json' });
-  private serverUrl = environment.serverUrl + '/games'; // URL to web api
-  private games: Game[] = [];
+  private serverUrl = environment.serverUrl + '/weapons'; // URL to web api
+  private weapons: Weapon[] = [];
 
   constructor(private http: Http, private httpClient: HttpClient) {
-    this.fetchGames();
+    this.fetchWeapons();
   }
 
-  public getGames() : Game[] {
-    return this.games;
+  public getWeapons() : Weapon[] {
+    return this.weapons;
   }
 
-  public getGame(id: number) : Game {
-    for(let game of this.games){
-      if(game.id == id)
+  public getWeapon(id: number) : Weapon {
+    for(let weapon of this.weapons){
+      if(weapon.id == id)
       {
-        return game;
+        return weapon;
       }
     }
   }
 
-  private fetchGames(){
-    console.log('games ophalen van server');
-    this.httpClient.get<Game[]>(this.serverUrl, {
+  private fetchWeapons(){
+    console.log('weapons ophalen van server');
+    this.httpClient.get<Weapon[]>(this.serverUrl, {
       observe: 'body',
       responseType: 'json'
     })
     .subscribe(
-      (games: Game[]) => {
-        this.games = games;
+      (games: Weapon[]) => {
+        this.weapons = games;
       }
     );
   }
