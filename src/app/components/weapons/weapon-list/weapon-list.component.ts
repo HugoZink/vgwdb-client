@@ -9,7 +9,7 @@ import { WeaponService } from '../../../services/weapon.service';
 })
 export class WeaponListComponent implements OnInit {
 
-  private weapons: Weapon[];
+  weapons: Weapon[];
 
   constructor(private weaponService: WeaponService) { }
 

@@ -9,7 +9,7 @@ import { Game } from '../../../models/game.model';
 })
 export class GameListComponent implements OnInit, OnDestroy {
 
-  private games: Game[];
+  games: Game[];
 
   constructor(private gameService : GameService) { }
 

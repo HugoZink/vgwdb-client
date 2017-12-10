@@ -7,6 +7,7 @@ export class Game {
   private _id: number;
   private _name: string;
   private _released: number;
+  private _description: string;
   private _developer;
   private _weapons;
 
@@ -28,6 +29,14 @@ export class Game {
 
   public set name(n: string) {
     this._name = n;
+  }
+
+  public get description(): string {
+    return this._description;
+  }
+
+  public set description(d: string) {
+    this._description = d;
   }
 
   public get released(): number {

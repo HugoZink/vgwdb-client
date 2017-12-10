@@ -4,7 +4,13 @@
 
 <p>Designed in {{ weapon.designed }}.</p>
 
-<p>Appears in the following games:</p>
-<ul>
-  <li *ngFor="let game of weapon.games"><a routerLink="/games/{{ game.id }}">{{ game.name }} (as {{ game.ingameName }})</a></li>
-</ul>
+<div *ngIf="weapon.games.length > 0; else noWeapons">
+  <p>Appears in the following games:</p>
+  <ul>
+    <li *ngFor="let game of weapon.games"><a routerLink="/games/{{ game.id }}">{{ game.name }} (as {{ game.ingameName }})</a></li>
+  </ul>
+</div>
+
+<ng-template #noWeapons>
+  <p>This weapon is not featured in any games.</p>
+</ng-template>
