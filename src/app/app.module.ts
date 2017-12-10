@@ -17,6 +17,7 @@ import { WeaponListComponent } from './components/weapons/weapon-list/weapon-lis
 import { WeaponDetailsComponent } from './components/weapons/weapon-details/weapon-details.component';
 import { WeaponItemComponent } from './components/weapons/weapon-list/weapon-item/weapon-item.component';
 import { WeaponService } from './services/weapon.service';
+import { WeaponEditComponent } from './components/weapons/weapon-edit/weapon-edit.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { WeaponService } from './services/weapon.service';
     WeaponListComponent,
     WeaponDetailsComponent,
     WeaponItemComponent,
+    WeaponEditComponent,
   ],
   imports: [
     BrowserModule,

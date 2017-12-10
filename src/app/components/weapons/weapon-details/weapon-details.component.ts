@@ -40,4 +40,7 @@ export class WeaponDetailsComponent implements OnInit, OnDestroy {
     this.router.navigate(['/weapons']);
   }
 
+  onEdit() {
+    this.router.navigate(['edit'], {relativeTo: this.route});
+  }
 }

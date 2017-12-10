@@ -1,0 +1,55 @@
+<div class="row">
+  <h2>Editing {{ weapon.name }}</h2>
+</div>
+
+<div class="row">
+  <label for="weaponName">Name</label>
+  <input type="text" class="form-control" id="weaponName"
+    required
+    [(ngModel)]="weapon.name" name="name">
+</div>
+
+<div class="row">
+  <label for="weaponDescription">Description</label>
+  <textarea class="form-control" id="weaponDescription"
+    [(ngModel)]="weapon.description" name="description"></textarea>
+</div>
+
+<div class="row">
+  <label for="weaponDesigned">Designed</label>
+  <input type="text" class="form-control" id="weaponDesigned"
+    [(ngModel)]="weapon.designed" name="designed">
+</div>
+
+<hr>
+
+<div class="row">
+  <h4>Featured in games:</h4>
+  <div class="row weapon-game" *ngFor="let game of weapon.games; let i = index">
+    <div class="col-xs-11">
+      <p>{{ game.name }} (as {{ game.ingameName }})</p>
+    </div>
+    <div class="col-xs-1">
+      <button type="button" class="btn-danger" (click)="onDeleteGame(i)">X</button>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <h4>Add game</h4>
+
+  <div class="form-group">
+    <select class="form-control" id="gameSelect" [(ngModel)]="gameId">
+      <option *ngFor="let game of availableGames" [value]="game.id">{{ game.name }}</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="ingameName">Ingame name</label>
+    <input class="form-control" type="text" placeholder="Name of the weapon as it appears in the game" id="ingameName" [(ngModel)]="ingameName">
+  </div>
+
+  <div class="form-group">
+    <button type="button" class="btn btn-success" (click)="addGame()">Add Game</button>
+  </div>
+</div>
