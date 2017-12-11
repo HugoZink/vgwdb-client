@@ -7,6 +7,7 @@ export class Manufacturer {
       private _id: number;
       private _name: string;
       private _founded: number;
+      private _weapons;
     
       constructor(values: Object = {}) {
         Object.assign(this, values);
@@ -34,6 +35,14 @@ export class Manufacturer {
 
       public set founded(f: number) {
           this._founded = f;
+      }
+
+      public get weapons() {
+        return this._weapons;
+      }
+    
+      public set weapons(w) {
+        this._weapons = w;
       }
     }
     
