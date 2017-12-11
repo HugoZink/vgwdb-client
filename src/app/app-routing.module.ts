@@ -6,6 +6,9 @@ import { GameDetailsComponent } from './components/games/game-details/game-detai
 import { WeaponListComponent } from './components/weapons/weapon-list/weapon-list.component';
 import { WeaponDetailsComponent } from './components/weapons/weapon-details/weapon-details.component';
 import { WeaponEditComponent } from './components/weapons/weapon-edit/weapon-edit.component';
+import { ManufacturerListComponent } from './components/manufacturers/manufacturer-list/manufacturer-list.component';
+import { ManufacturerDetailsComponent } from './components/manufacturers/manufacturer-details/manufacturer-details.component';
+import { ManufacturerEditComponent } from './components/manufacturers/manufacturer-edit/manufacturer-edit.component';
 
 const appRoutes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
@@ -20,6 +23,14 @@ const appRoutes: Routes = [
     },
     {
       path: ':id/edit', component: WeaponEditComponent
+    }
+  ]},
+  { path: 'manufacturers', component: ManufacturerListComponent, children: [
+    {
+      path: ':id', component: ManufacturerDetailsComponent
+    },
+    {
+      path: ':id/edit', component: ManufacturerEditComponent
     }
   ]},
   { path: '**', redirectTo: '/dashboard' }

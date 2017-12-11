@@ -3,7 +3,6 @@ import { Http, Headers, URLSearchParams } from '@angular/http';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Router, ActivatedRoute } from '@angular/router';
-import 'rxjs/add/operator/toPromise';
 import { Observable } from 'rxjs/Observable';
 import { Weapon } from '../models/weapon.model';
 

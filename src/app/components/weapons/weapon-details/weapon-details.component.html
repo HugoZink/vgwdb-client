@@ -19,7 +19,7 @@
 
   <p>{{ weapon.description }}</p>
 
-  <p>Designed in {{ weapon.designed }}.</p>
+  <p>Designed in {{ weapon.designed }}. Manufactured by <a routerLink="/manufacturers/{{ weapon.manufacturer.id }}">{{ weapon.manufacturer.name }}.</a></p>
 
   <div *ngIf="weapon.games.length > 0; else noGames">
     <p>Appears in the following games:</p>

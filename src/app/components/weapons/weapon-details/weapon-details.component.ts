@@ -19,17 +19,17 @@ export class WeaponDetailsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.subscription = this.route.params
-      .subscribe(
-        (params: Params) => {
-          try{
-            const id = params['id'];
-            this.weapon = this.weaponService.getWeapon(id);
-          }
-          catch(e){
-            this.onReload();
-          }
+    .subscribe(
+      (params: Params) => {
+        try{
+          const id = params['id'];
+          this.weapon = this.weaponService.getWeapon(id);
         }
-      );
+        catch(e){
+          this.onReload();
+        }
+      }
+    );
   }
 
   ngOnDestroy() {

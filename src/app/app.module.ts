@@ -18,6 +18,11 @@ import { WeaponDetailsComponent } from './components/weapons/weapon-details/weap
 import { WeaponItemComponent } from './components/weapons/weapon-list/weapon-item/weapon-item.component';
 import { WeaponService } from './services/weapon.service';
 import { WeaponEditComponent } from './components/weapons/weapon-edit/weapon-edit.component';
+import { ManufacturerListComponent } from './components/manufacturers/manufacturer-list/manufacturer-list.component';
+import { ManufacturerItemComponent } from './components/manufacturers/manufacturer-list/manufacturer-item/manufacturer-item.component';
+import { ManufacturerDetailsComponent } from './components/manufacturers/manufacturer-details/manufacturer-details.component';
+import { ManufacturerEditComponent } from './components/manufacturers/manufacturer-edit/manufacturer-edit.component';
+import { ManufacturerService } from './services/manufacturer.service';
 
 @NgModule({
   declarations: [
@@ -31,6 +36,10 @@ import { WeaponEditComponent } from './components/weapons/weapon-edit/weapon-edi
     WeaponDetailsComponent,
     WeaponItemComponent,
     WeaponEditComponent,
+    ManufacturerListComponent,
+    ManufacturerItemComponent,
+    ManufacturerDetailsComponent,
+    ManufacturerEditComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,7 +51,8 @@ import { WeaponEditComponent } from './components/weapons/weapon-edit/weapon-edi
   ],
   providers: [
     GameService,
-    WeaponService
+    WeaponService,
+    ManufacturerService
   ],
   bootstrap: [AppComponent]
 })

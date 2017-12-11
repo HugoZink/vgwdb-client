@@ -4,41 +4,41 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
-import { Game } from '../models/game.model';
+import { Manufacturer } from '../models/manufacturer.model';
 
 @Injectable()
-export class GameService {
+export class ManufacturerService {
 
   private headers = new Headers({ 'Content-Type': 'application/json' });
-  private serverUrl = environment.serverUrl + '/games'; // URL to web api
-  private games: Game[] = [];
+  private serverUrl = environment.serverUrl + '/manufacturers'; // URL to web api
+  private manufacturers: Manufacturer[] = [];
 
   constructor(private http: Http, private httpClient: HttpClient) {
-    this.fetchGames();
+    this.fetchManufacturers();
   }
 
-  public getGames() : Game[] {
-    return this.games;
+  public getManufacturers() : Manufacturer[] {
+    return this.manufacturers;
   }
 
-  public getGame(id: number) : Game {
-    for(let game of this.games){
-      if(game.id == id)
+  public getManufacturer(id: number) : Manufacturer {
+    for(let manufacturer of this.manufacturers){
+      if(manufacturer.id == id)
       {
-        return game;
+        return manufacturer;
       }
     }
   }
 
-  private fetchGames(){
-    console.log('games ophalen van server');
-    this.httpClient.get<Game[]>(this.serverUrl, {
+  private fetchManufacturers(){
+    console.log('manufacturers ophalen van server');
+    this.httpClient.get<Manufacturer[]>(this.serverUrl, {
       observe: 'body',
       responseType: 'json'
     })
     .subscribe(
-      (games: Game[]) => {
-        this.games = games;
+      (manufacturers: Manufacturer[]) => {
+        this.manufacturers = manufacturers;
       }
     );
   }

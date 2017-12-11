@@ -1,0 +1,16 @@
+<div class="row">
+  <h2>{{ manufacturer.name }}</h2>
+
+  <p>Founded in {{ manufacturer.founded }}.</p>
+
+  <div *ngIf="manufacturer.weapons.length > 0; else noWeapons">
+    <p>Manufactures the following weapons:</p>
+    <ul>
+      <li *ngFor="let weapon of manufacturer.weapons"><a routerLink="/weapons/{{ weapon.id }}">{{ weapon.name }}</a></li>
+    </ul>
+  </div>
+
+  <ng-template #noWeapons>
+    <p>This manufacturer does not appear to manufacture any weapons.</p>
+  </ng-template>
+</div>

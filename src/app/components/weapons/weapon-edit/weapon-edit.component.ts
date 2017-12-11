@@ -38,7 +38,8 @@ export class WeaponEditComponent implements OnInit, OnDestroy {
         (params: Params) => {
           try{
             const id = params['id'];
-            this.weapon = this.weaponService.getWeapon(id);
+            //Copy object, to prevent the form from changing the original prematurely
+            this.weapon = JSON.parse(JSON.stringify(this.weaponService.getWeapon(id)))
           }
           catch(e){
             this.onReload();
@@ -99,6 +100,10 @@ export class WeaponEditComponent implements OnInit, OnDestroy {
 
   onSaveChanges() {
     this.weaponService.updateWeapon(this.weapon);
+    this.router.navigate(['/weapons/' + this.weapon.id]);
+  }
+
+  onCancel() {
     this.router.navigate(['/weapons/' + this.weapon.id]);
   }
 
