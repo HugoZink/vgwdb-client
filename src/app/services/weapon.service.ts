@@ -38,10 +38,32 @@ export class WeaponService {
       responseType: 'json'
     })
     .subscribe(
-      (games: Weapon[]) => {
-        this.weapons = games;
+      (weapons: Weapon[]) => {
+        this.weapons = weapons;
       }
     );
+  }
+
+  public updateWeapon(weapon: Weapon) {
+
+    let url = this.serverUrl + '/' + weapon.id;
+
+    this.httpClient.put(url, weapon, {
+      observe: 'body',
+      responseType: 'json'
+    })
+    .subscribe(
+      (weapon: Weapon) => {
+        this.onPutResponse(weapon);
+      }
+    );
+  }
+
+  private onPutResponse(weapon: Weapon) {
+    //Replace weapon with the one we got from the server
+    let index = this.weapons.findIndex(w => w.id == weapon.id);
+
+    this.weapons[index] = weapon;
   }
 
   //

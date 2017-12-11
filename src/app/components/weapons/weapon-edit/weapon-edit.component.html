@@ -23,7 +23,7 @@
 
 <hr>
 
-<div class="row">
+<div class="row" *ngIf="weapon.games.length > 0; else noGames">
   <h4>Featured in games:</h4>
   <div class="row weapon-game" *ngFor="let game of weapon.games; let i = index">
     <div class="col-xs-11">
@@ -34,6 +34,12 @@
     </div>
   </div>
 </div>
+
+<ng-template #noGames>
+  <div class="row">
+    <p>This weapon is not featured in any games.</p>
+  </div>
+</ng-template>
 
 <div class="row">
   <h4>Add game</h4>
@@ -50,6 +56,10 @@
   </div>
 
   <div class="form-group">
-    <button type="button" class="btn btn-success" (click)="addGame()">Add Game</button>
+    <button type="button" class="btn btn-success" (click)="onAddGame()">Add Game</button>
   </div>
+</div>
+
+<div class="row">
+  <button type="button" class="btn btn-primary" (click)="onSaveChanges()">Save Changes</button>
 </div>

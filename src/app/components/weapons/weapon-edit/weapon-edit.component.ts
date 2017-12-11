@@ -46,7 +46,7 @@ export class WeaponEditComponent implements OnInit, OnDestroy {
         }
       );
 
-      this.fetchAvailableGames();
+      this.updateAvailableGames();
   }
 
   ngOnDestroy() {
@@ -57,8 +57,8 @@ export class WeaponEditComponent implements OnInit, OnDestroy {
     this.router.navigate(['/weapons']);
   }
 
-  //Gets all the games from the game service, and filters out games that have already been added to the game.
-  fetchAvailableGames() {
+  //Gets all the games from the game service, and filters out games that have already been added to this weapon.
+  updateAvailableGames() {
 
     this.availableGames = [];
 
@@ -68,7 +68,7 @@ export class WeaponEditComponent implements OnInit, OnDestroy {
       takenIds.push(Number(game.id));
     }
 
-    //Loop over games, and only add those which have not yet been taken.
+    //Loop over games, and only add those which have not yet been selected.
     for(let game of this.gameService.getGames()){
       if(!takenIds.includes(game.id)) {
         this.availableGames.push(game);
@@ -78,7 +78,7 @@ export class WeaponEditComponent implements OnInit, OnDestroy {
     this.ref.detectChanges();
   }
 
-  addGame() {
+  onAddGame() {
 
     let game = this.gameService.getGame(this.gameId);
 
@@ -88,7 +88,18 @@ export class WeaponEditComponent implements OnInit, OnDestroy {
       ingameName: this.ingameName
     });
 
-    this.fetchAvailableGames();
+    this.updateAvailableGames();
+  }
+
+  onDeleteGame(i) {
+    this.weapon.games.splice(i, 1);
+
+    this.updateAvailableGames();
+  }
+
+  onSaveChanges() {
+    this.weaponService.updateWeapon(this.weapon);
+    this.router.navigate(['/weapons/' + this.weapon.id]);
   }
 
 }
