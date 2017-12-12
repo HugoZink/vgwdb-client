@@ -5,5 +5,5 @@
 
 export const environment = {
   production: true,
-  serverUrl: 'https://avans-nodetestserver.herokuapp.com/api/v1'
+  serverUrl: 'https://vgwdb-server.herokuapp.com/api/v1'
 };
