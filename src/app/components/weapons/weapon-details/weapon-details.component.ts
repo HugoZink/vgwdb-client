@@ -43,4 +43,11 @@ export class WeaponDetailsComponent implements OnInit, OnDestroy {
   onEdit() {
     this.router.navigate(['edit'], {relativeTo: this.route});
   }
+
+  onDelete() {
+    if(confirm('Are you sure you want to delete this weapon?')) {
+      this.weaponService.deleteWeapon(this.weapon);
+      this.router.navigate(['/weapons']);
+    }
+  }
 }

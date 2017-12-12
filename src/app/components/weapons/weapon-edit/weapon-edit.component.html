@@ -1,6 +1,12 @@
-<div class="row">
+<div class="row" *ngIf="editMode; else newWeaponTitle">
   <h2>Editing {{ weapon.name }}</h2>
 </div>
+
+<ng-template #newWeaponTitle>
+  <div class="row">
+    <h2>Creating new weapon</h2>
+  </div>
+</ng-template>
 
 <div class="row">
   <label for="weaponName">Name</label>
@@ -21,6 +27,13 @@
     [(ngModel)]="weapon.designed" name="designed">
 </div>
 
+<div class="row">
+  <label for="weaponManufacturer">Manufacturer</label>
+  <select class="form-control" id="weaponManufacturer" [(ngModel)]="manufacturerId">
+    <option *ngFor="let manufacturer of manufacturers" [value]="manufacturer.id">{{ manufacturer.name }}</option>
+  </select>
+</div>
+
 <hr>
 
 <div class="row" *ngIf="weapon.games.length > 0; else noGames">
@@ -30,7 +43,7 @@
       <p>{{ game.name }} (as {{ game.ingameName }})</p>
     </div>
     <div class="col-xs-1">
-      <button type="button" class="btn-danger" (click)="onDeleteGame(i)">X</button>
+      <button type="button" class="btn btn-danger" (click)="onDeleteGame(i)">X</button>
     </div>
   </div>
 </div>

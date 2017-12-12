@@ -43,6 +43,17 @@ export class WeaponService {
     );
   }
 
+  public createWeapon(weapon: Weapon) {
+
+    this.httpClient.post<Weapon>(this.serverUrl, weapon.toObject())
+    .subscribe(
+      (weapon: Weapon) => {
+        this.weapons.push(weapon);
+      }
+    );
+
+  }
+
   public updateWeapon(weapon: Weapon) {
 
     let url = this.serverUrl + '/' + weapon.id;
@@ -63,6 +74,18 @@ export class WeaponService {
     let index = this.weapons.findIndex(w => w.id == weapon.id);
 
     this.weapons[index] = weapon;
+  }
+
+  public deleteWeapon(weapon: Weapon) {
+    let url = this.serverUrl + '/' + weapon.id;
+
+    this.httpClient.delete(url)
+    .subscribe(() => {
+      //Delete weapon from array
+      let index = this.weapons.findIndex(w => w.id == weapon.id);
+
+      this.weapons.splice(index, 1);
+    });
   }
 
   //

@@ -15,6 +15,18 @@ export class Weapon {
     Object.assign(this, values);
   }
 
+  //Return object with current values, for use in json.stringify() for example
+  public toObject() {
+    return {
+      id: this.id,
+      name: this.name,
+      description: this.description,
+      designed: this.designed,
+      manufacturer: this.manufacturer,
+      games: this.games
+    }
+  }
+
   public get id(): number {
     return this._id;
   }
@@ -40,7 +52,7 @@ export class Weapon {
   }
 
   public get designed(): string {
-    return this.designed;
+    return this._designed;
   }
 
   public set designed(d: string) {

@@ -6,6 +6,8 @@ import { GameService } from '../../../services/game.service';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import { FormGroup } from '@angular/forms';
+import { ManufacturerService } from '../../../services/manufacturer.service';
+import { Manufacturer } from '../../../models/manufacturer.model';
 
 @Component({
   selector: 'app-weapon-edit',
@@ -14,9 +16,14 @@ import { FormGroup } from '@angular/forms';
 })
 export class WeaponEditComponent implements OnInit, OnDestroy {
 
+  //If true, the user is updating a weapon. If false, the user is creating a new one.
+  editMode: boolean = false;
+
   weapon: Weapon;
 
   availableGames: Game[];
+
+  manufacturers: Manufacturer[];
 
   subscription: Subscription;
 
@@ -26,20 +33,35 @@ export class WeaponEditComponent implements OnInit, OnDestroy {
   gameId: number;
   ingameName: string;
 
+  //Temporary variable for manufacturer selection.
+  manufacturerId: number;
+
   constructor(private weaponService: WeaponService,
     private gameService: GameService,
+    private manufacturerService: ManufacturerService,
     private route: ActivatedRoute,
     private router: Router,
     private ref: ChangeDetectorRef) { }
 
   ngOnInit() {
+
     this.subscription = this.route.params
       .subscribe(
         (params: Params) => {
           try{
             const id = params['id'];
-            //Copy object, to prevent the form from changing the original prematurely
-            this.weapon = JSON.parse(JSON.stringify(this.weaponService.getWeapon(id)))
+
+            if(!id){
+              this.editMode = false;
+              this.weapon = new Weapon();
+              this.weapon.games = [];
+            }
+            else {
+              this.editMode = true;
+              //Copy object, to prevent the form from changing the original prematurely
+              this.weapon = JSON.parse(JSON.stringify(this.weaponService.getWeapon(id)))
+              this.manufacturerId = this.weapon.manufacturer.id;
+            }
           }
           catch(e){
             this.onReload();
@@ -48,6 +70,8 @@ export class WeaponEditComponent implements OnInit, OnDestroy {
       );
 
       this.updateAvailableGames();
+
+      this.manufacturers = this.manufacturerService.getManufacturers();
   }
 
   ngOnDestroy() {
@@ -99,8 +123,19 @@ export class WeaponEditComponent implements OnInit, OnDestroy {
   }
 
   onSaveChanges() {
-    this.weaponService.updateWeapon(this.weapon);
-    this.router.navigate(['/weapons/' + this.weapon.id]);
+
+    //Get manufacturer name from ID
+    let manufacturer = this.manufacturerService.getManufacturer(this.manufacturerId);
+    this.weapon.manufacturer = {id: manufacturer.id, name: manufacturer.name}
+
+    if(this.editMode) {
+      this.weaponService.updateWeapon(this.weapon);
+      this.router.navigate(['/weapons/' + this.weapon.id]);
+    }
+    else {
+      this.weaponService.createWeapon(this.weapon);
+      this.router.navigate(['/weapons']);
+    }
   }
 
   onCancel() {

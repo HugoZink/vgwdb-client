@@ -19,6 +19,9 @@ const appRoutes: Routes = [
   ]},
   { path: 'weapons', component: WeaponListComponent, children: [
     {
+      path: 'new', component: WeaponEditComponent
+    },
+    {
       path: ':id', component: WeaponDetailsComponent
     },
     {
