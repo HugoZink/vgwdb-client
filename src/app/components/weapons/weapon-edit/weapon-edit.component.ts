@@ -71,7 +71,17 @@ export class WeaponEditComponent implements OnInit, OnDestroy {
 
       this.updateAvailableGames();
 
+      //Subscribe to changes in the game dataset
+      this.gameService.dataSub.subscribe(
+        (data: Game[]) => { this.updateAvailableGames(); }
+      );
+
       this.manufacturers = this.manufacturerService.getManufacturers();
+
+      //Subscribe to changes in the manufacturer dataset
+      this.manufacturerService.dataSub.subscribe(
+        (data: Manufacturer[]) => { this.manufacturers = data; }
+      );
   }
 
   ngOnDestroy() {

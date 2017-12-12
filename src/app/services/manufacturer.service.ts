@@ -3,10 +3,9 @@ import { Http, Headers, URLSearchParams } from '@angular/http';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/rx';
+import { Observable } from 'Rxjs/Observable';
 import { Manufacturer } from '../models/manufacturer.model';
-import { Subject } from 'rxjs/Subject';
+import { Subject } from 'Rxjs/Subject';
 
 @Injectable()
 export class ManufacturerService {
