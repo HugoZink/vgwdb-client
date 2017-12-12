@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Weapon } from '../../../models/weapon.model';
 import { WeaponService } from '../../../services/weapon.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-weapon-list',
@@ -10,6 +11,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class WeaponListComponent implements OnInit {
 
+  subscription: Subscription;
+
   weapons: Weapon[];
 
   constructor(private weaponService: WeaponService, private route: ActivatedRoute, private router: Router) { }
@@ -17,13 +20,13 @@ export class WeaponListComponent implements OnInit {
   ngOnInit() : void {
     this.weapons = this.weaponService.getWeapons();
 
-    this.weaponService.dataSub.subscribe(
+    this.subscription = this.weaponService.dataSub.subscribe(
       (data: Weapon[]) => { this.weapons = data; }
     );
   }
 
   ngOnDestroy() : void {
-    this.weaponService.dataSub.unsubscribe();
+    this.subscription.unsubscribe();
   }
 
   onAddWeapon() {

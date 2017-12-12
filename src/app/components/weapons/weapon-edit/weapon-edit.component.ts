@@ -27,6 +27,10 @@ export class WeaponEditComponent implements OnInit, OnDestroy {
 
   subscription: Subscription;
 
+  gameSubscription: Subscription;
+
+  manufacturerSubscription: Subscription;
+
   weaponForm: FormGroup;
 
   //Temporary variables that are set when adding a game to the weapon.
@@ -72,20 +76,22 @@ export class WeaponEditComponent implements OnInit, OnDestroy {
       this.updateAvailableGames();
 
       //Subscribe to changes in the game dataset
-      this.gameService.dataSub.subscribe(
+      this.gameSubscription = this.gameService.dataSub.subscribe(
         (data: Game[]) => { this.updateAvailableGames(); }
       );
 
       this.manufacturers = this.manufacturerService.getManufacturers();
 
       //Subscribe to changes in the manufacturer dataset
-      this.manufacturerService.dataSub.subscribe(
+      this.manufacturerSubscription = this.manufacturerService.dataSub.subscribe(
         (data: Manufacturer[]) => { this.manufacturers = data; }
       );
   }
 
   ngOnDestroy() {
-    
+    this.subscription.unsubscribe();
+    this.gameSubscription.unsubscribe();
+    this.manufacturerSubscription.unsubscribe();
   }
 
   onReload() {

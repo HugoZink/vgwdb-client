@@ -33,7 +33,7 @@ export class WeaponDetailsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-
+    this.subscription.unsubscribe();
   }
 
   onReload() {
