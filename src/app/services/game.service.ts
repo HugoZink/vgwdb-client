@@ -3,9 +3,9 @@ import { Http, Headers, URLSearchParams } from '@angular/http';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Observable } from 'Rxjs/Observable';
+import { Observable } from 'rxjs/Observable';
 import { Game } from '../models/game.model';
-import { Subject } from 'Rxjs/Subject';
+import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class GameService {
