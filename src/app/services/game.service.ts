@@ -5,6 +5,7 @@ import { environment } from '../../environments/environment';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { Game } from '../models/game.model';
+import { Subject } from 'rxjs';
 
 @Injectable()
 export class GameService {
@@ -13,7 +14,11 @@ export class GameService {
   private serverUrl = environment.serverUrl + '/games'; // URL to web api
   private games: Game[] = [];
 
+  //This Subject will pass on data to its subscribers when the data changes.
+  dataSub: Subject<Game[]>;
+
   constructor(private http: Http, private httpClient: HttpClient) {
+    this.dataSub = new Subject();
     this.fetchGames();
   }
 
@@ -39,6 +44,9 @@ export class GameService {
     .subscribe(
       (games: Game[]) => {
         this.games = games;
+
+        //Notify observers that the data has changed
+        this.dataSub.next(this.games);
       }
     );
   }

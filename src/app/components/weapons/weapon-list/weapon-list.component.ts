@@ -16,10 +16,14 @@ export class WeaponListComponent implements OnInit {
 
   ngOnInit() : void {
     this.weapons = this.weaponService.getWeapons();
+
+    this.weaponService.dataSub.subscribe(
+      (data: Weapon[]) => { this.weapons = data; }
+    );
   }
 
   ngOnDestroy() : void {
-    
+    this.weaponService.dataSub.unsubscribe();
   }
 
   onAddWeapon() {

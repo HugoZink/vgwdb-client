@@ -15,9 +15,14 @@ export class ManufacturerListComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.manufacturers = this.manufacturerService.getManufacturers();
+
+    //Subscribe to changes in the data set
+    this.manufacturerService.dataSub.subscribe(
+      (data: Manufacturer[]) => { this.manufacturers = data; }
+    );
   }
 
   ngOnDestroy() : void {
-
+    this.manufacturerService.dataSub.unsubscribe();
   }
 }

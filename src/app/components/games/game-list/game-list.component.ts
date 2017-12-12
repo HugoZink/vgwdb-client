@@ -15,10 +15,14 @@ export class GameListComponent implements OnInit, OnDestroy {
 
   ngOnInit() : void {
     this.games = this.gameService.getGames();
+
+    this.gameService.dataSub.subscribe(
+      (data: Game[]) => { this.games = data; }
+    );
   }
 
   ngOnDestroy() {
-    
+    this.gameService.dataSub.unsubscribe();
   }
 
 }

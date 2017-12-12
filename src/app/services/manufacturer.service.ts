@@ -4,7 +4,9 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/rx';
 import { Manufacturer } from '../models/manufacturer.model';
+import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class ManufacturerService {
@@ -13,7 +15,11 @@ export class ManufacturerService {
   private serverUrl = environment.serverUrl + '/manufacturers'; // URL to web api
   private manufacturers: Manufacturer[] = [];
 
+  //This Subject will pass on data to its subscribers when the data changes.
+  dataSub: Subject<Manufacturer[]>;
+
   constructor(private http: Http, private httpClient: HttpClient) {
+    this.dataSub = new Subject();
     this.fetchManufacturers();
   }
 
@@ -39,6 +45,9 @@ export class ManufacturerService {
     .subscribe(
       (manufacturers: Manufacturer[]) => {
         this.manufacturers = manufacturers;
+
+        //Notify observers that the data has changed
+        this.dataSub.next(this.manufacturers);
       }
     );
   }
