@@ -42,4 +42,15 @@ export class GameDetailsComponent implements OnInit, OnDestroy {
     this.router.navigate(['/games']);
   }
 
+  onEdit() {
+    this.router.navigate(['edit'], {relativeTo: this.route});
+  }
+
+  onDelete() {
+    if(confirm('Are you sure you want to delete this game?')) {
+      this.gameService.deleteGame(this.game);
+      this.router.navigate(['/games']);
+    }
+  }
+
 }

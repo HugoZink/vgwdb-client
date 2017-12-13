@@ -86,6 +86,22 @@ export class GameService {
     this.dataSub.next(this.games);
   }
 
+  public deleteGame(game: Game) {
+    let url = this.serverUrl + '/' + game.id;
+
+    this.httpClient.delete(url)
+    .subscribe(
+      () => {
+        //Delete game from games array
+        let index = this.games.findIndex(g => g.id == game.id);
+
+        this.games.splice(index, 1);
+
+        this.dataSub.next(this.games);
+      }
+    );
+  }
+
   //
   //
   //

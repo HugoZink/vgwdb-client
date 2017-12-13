@@ -13,3 +13,7 @@
 .navbar {
   border-radius: 0px;
 }
+
+.dropdown-menu li {
+  cursor: pointer;
+}
