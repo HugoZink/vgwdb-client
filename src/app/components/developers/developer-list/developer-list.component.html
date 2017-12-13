@@ -1,0 +1,24 @@
+<div class="row">
+  <h1>Developers</h1>
+</div>
+
+<!--<button type="button" class="btn btn-success" id="addDeveloperButton" (click)="onAddDeveloper()">Add new developer</button>-->
+
+<div class="row">
+  
+    <div class="col-md-4">
+      
+      <div class="row">
+        <div class="col-xs-12">
+          <app-developer-item
+            *ngFor="let developerEl of developers; let i = index"
+            [developer]="developerEl"></app-developer-item>
+        </div>
+      </div>
+
+    </div>
+  
+    <div class="col-md-8">
+        <router-outlet></router-outlet>
+    </div>
+  </div>

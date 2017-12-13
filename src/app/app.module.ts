@@ -23,6 +23,11 @@ import { ManufacturerItemComponent } from './components/manufacturers/manufactur
 import { ManufacturerDetailsComponent } from './components/manufacturers/manufacturer-details/manufacturer-details.component';
 import { ManufacturerEditComponent } from './components/manufacturers/manufacturer-edit/manufacturer-edit.component';
 import { ManufacturerService } from './services/manufacturer.service';
+import { GameEditComponent } from './components/games/game-edit/game-edit.component';
+import { DeveloperListComponent } from './components/developers/developer-list/developer-list.component';
+import { DeveloperItemComponent } from './components/developers/developer-list/developer-item/developer-item.component';
+import { DeveloperService } from './services/developer.service';
+import { DeveloperDetailsComponent } from './components/developers/developer-details/developer-details.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +45,10 @@ import { ManufacturerService } from './services/manufacturer.service';
     ManufacturerItemComponent,
     ManufacturerDetailsComponent,
     ManufacturerEditComponent,
+    GameEditComponent,
+    DeveloperListComponent,
+    DeveloperItemComponent,
+    DeveloperDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,7 +61,8 @@ import { ManufacturerService } from './services/manufacturer.service';
   providers: [
     GameService,
     WeaponService,
-    ManufacturerService
+    ManufacturerService,
+    DeveloperService
   ],
   bootstrap: [AppComponent]
 })

@@ -24,7 +24,7 @@ export class Weapon {
       designed: this.designed,
       manufacturer: this.manufacturer,
       games: this.games
-    }
+    };
   }
 
   public get id(): number {

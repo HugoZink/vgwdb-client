@@ -2,7 +2,7 @@
 
 <p>{{ game.description }}</p>
 
-<p>Developed by {{ game.developer.name }} in {{ game.released }}.</p>
+<p>Developed by <a routerLink="/developers/{{ game.developer.id }}">{{ game.developer.name }}</a> in {{ game.released }}.</p>
 
 <p>Features the following weapons:</p>
 <ul>

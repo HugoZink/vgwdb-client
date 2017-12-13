@@ -1,0 +1,16 @@
+<div class="row">
+  <h2>{{ developer.name }}</h2>
+
+  <p>Founded in {{ developer.founded }}.</p>
+
+  <div *ngIf="developer.games.length > 0; else noGames">
+    <p>Has developed the following games:</p>
+    <ul>
+      <li *ngFor="let game of developer.games"><a routerLink="/games/{{ game.id }}">{{ game.name }}</a></li>
+    </ul>
+  </div>
+
+  <ng-template #noGames>
+    <p>This developer does not appear to have developed any games.</p>
+  </ng-template>
+</div>

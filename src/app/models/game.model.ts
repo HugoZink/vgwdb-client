@@ -15,6 +15,18 @@ export class Game {
     Object.assign(this, values);
   }
 
+  //Return object with current values, for use in json.stringify() for example
+  public toObject() {
+    return {
+      id: this.id,
+      name: this.name,
+      released: this.released,
+      description: this.description,
+      developer: this.developer,
+      weapons: this.weapons
+    };
+  }
+
   public get id(): number {
     return this._id;
   }

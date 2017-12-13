@@ -9,12 +9,22 @@ import { WeaponEditComponent } from './components/weapons/weapon-edit/weapon-edi
 import { ManufacturerListComponent } from './components/manufacturers/manufacturer-list/manufacturer-list.component';
 import { ManufacturerDetailsComponent } from './components/manufacturers/manufacturer-details/manufacturer-details.component';
 import { ManufacturerEditComponent } from './components/manufacturers/manufacturer-edit/manufacturer-edit.component';
+import { DeveloperListComponent } from './components/developers/developer-list/developer-list.component';
+import { DeveloperDetailsComponent } from './components/developers/developer-details/developer-details.component';
 
 const appRoutes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
   { path: 'games', component: GameListComponent, children: [
     {
       path: ':id', component: GameDetailsComponent
+    }
+  ]},
+  { path: 'developers', component: DeveloperListComponent, children: [
+    {
+      path: ':id', component: DeveloperDetailsComponent
+    },
+    {
+      path: ':id/edit', component: ManufacturerEditComponent
     }
   ]},
   { path: 'weapons', component: WeaponListComponent, children: [

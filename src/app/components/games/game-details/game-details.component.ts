@@ -35,7 +35,7 @@ export class GameDetailsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-
+    this.subscription.unsubscribe();
   }
 
   onReload() {
