@@ -57,6 +57,9 @@ export class WeaponService {
     .subscribe(
       (weapon: Weapon) => {
         this.weapons.push(weapon);
+
+        //Notify observers that the data has changed
+        this.dataSub.next(this.weapons);
       }
     );
 
@@ -82,6 +85,8 @@ export class WeaponService {
     let index = this.weapons.findIndex(w => w.id == weapon.id);
 
     this.weapons[index] = weapon;
+
+    this.dataSub.next(this.weapons);
   }
 
   public deleteWeapon(weapon: Weapon) {
@@ -93,6 +98,8 @@ export class WeaponService {
       let index = this.weapons.findIndex(w => w.id == weapon.id);
 
       this.weapons.splice(index, 1);
+
+      this.dataSub.next(this.weapons);
     });
   }
 

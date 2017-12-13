@@ -31,8 +31,6 @@ export class WeaponEditComponent implements OnInit, OnDestroy {
 
   manufacturerSubscription: Subscription;
 
-  weaponForm: FormGroup;
-
   //Temporary variables that are set when adding a game to the weapon.
   gameId: number;
   ingameName: string;

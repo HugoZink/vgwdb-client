@@ -11,12 +11,19 @@ import { ManufacturerDetailsComponent } from './components/manufacturers/manufac
 import { ManufacturerEditComponent } from './components/manufacturers/manufacturer-edit/manufacturer-edit.component';
 import { DeveloperListComponent } from './components/developers/developer-list/developer-list.component';
 import { DeveloperDetailsComponent } from './components/developers/developer-details/developer-details.component';
+import { GameEditComponent } from './components/games/game-edit/game-edit.component';
 
 const appRoutes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
   { path: 'games', component: GameListComponent, children: [
     {
+      path: 'new', component: GameEditComponent
+    },
+    {
       path: ':id', component: GameDetailsComponent
+    },
+    {
+      path: ':id/edit', component: GameEditComponent
     }
   ]},
   { path: 'developers', component: DeveloperListComponent, children: [

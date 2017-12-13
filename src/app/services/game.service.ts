@@ -51,6 +51,41 @@ export class GameService {
     );
   }
 
+  public createGame(game: Game) {
+    this.httpClient.post<Game>(this.serverUrl, game.toObject())
+    .subscribe(
+      (game: Game) => {
+        this.games.push(game);
+
+        //Notify observers that the data has changed
+        this.dataSub.next(this.games);
+      }
+    );
+  }
+
+  public updateGame(game: Game) {
+    let url = this.serverUrl + '/' + game.id;
+
+    this.httpClient.put(url, game, {
+      observe: 'body',
+      responseType: 'json'
+    })
+    .subscribe(
+      (game: Game) => {
+        this.onPutResponse(game);
+      }
+    );
+  }
+
+  private onPutResponse(game: Game) {
+    //Replace game with the one we got from the server
+    let index = this.games.findIndex(g => g.id == game.id);
+
+    this.games[index] = game;
+
+    this.dataSub.next(this.games);
+  }
+
   //
   //
   //
