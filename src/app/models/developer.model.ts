@@ -2,6 +2,7 @@ export class Developer {
     private _id: number;
     private _name: string;
     private _founded: number;
+    private _games;
 
     constructor(values: Object = {}) {
         Object.assign(this, values);
@@ -29,5 +30,13 @@ export class Developer {
 
     public set founded(f: number) {
         this._founded = f;
+    }
+
+    public get games() {
+        return this._games;
+    }
+
+    public set games(g) {
+        this._games = g;
     }
 }
