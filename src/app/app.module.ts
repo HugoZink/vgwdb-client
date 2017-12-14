@@ -29,6 +29,7 @@ import { DeveloperItemComponent } from './components/developers/developer-list/d
 import { DeveloperService } from './services/developer.service';
 import { DeveloperDetailsComponent } from './components/developers/developer-details/developer-details.component';
 import { DeveloperEditComponent } from './components/developers/developer-edit/developer-edit.component';
+import { DropdownDirective } from './directives/dropdown.directive';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { DeveloperEditComponent } from './components/developers/developer-edit/d
     DeveloperItemComponent,
     DeveloperDetailsComponent,
     DeveloperEditComponent,
+    DropdownDirective
   ],
   imports: [
     BrowserModule,
