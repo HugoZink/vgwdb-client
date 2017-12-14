@@ -33,7 +33,7 @@ export class ManufacturerDetailsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    
+    this.subscription.unsubscribe();
   }
     
   onReload() {

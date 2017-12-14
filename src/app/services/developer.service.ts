@@ -35,7 +35,7 @@ export class DeveloperService {
     }
   }
 
-  private fetchDevelopers(){
+  private fetchDevelopers() {
     console.log('developers ophalen van server');
     this.httpClient.get<Developer[]>(this.serverUrl, {
       observe: 'body',
@@ -46,6 +46,53 @@ export class DeveloperService {
         this.developers = developers;
 
         //Notify observers that the data has changed
+        this.dataSub.next(this.developers);
+      }
+    );
+  }
+
+  public createDeveloper(developer: Developer) {
+    this.httpClient.post(this.serverUrl, developer.toObject())
+    .subscribe(
+      (developer: Developer) => {
+        this.developers.push(developer);
+
+        this.dataSub.next(this.developers);
+      }
+    );
+  }
+
+  public updateDeveloper(developer: Developer) {
+    let url = this.serverUrl + '/' + developer.id;
+
+    this.httpClient.put(url, developer)
+    .subscribe(
+      (developer: Developer) => {
+        this.onPutResponse(developer);
+      }
+    );
+  }
+
+  private onPutResponse(developer: Developer) {
+    //Replace developer with the one we got from the server
+    let index = this.developers.findIndex(d => d.id == developer.id);
+
+    this.developers[index] = developer;
+
+    this.dataSub.next(this.developers);
+  }
+
+  public deleteDeveloper(developer: Developer) {
+    let url = this.serverUrl + '/' + developer.id;
+
+    this.httpClient.delete(url)
+    .subscribe(
+      () => {
+        //Find and remove developer from local array
+        let index = this.developers.findIndex(d => d.id == developer.id);
+
+        this.developers.splice(index, 1);
+
         this.dataSub.next(this.developers);
       }
     );

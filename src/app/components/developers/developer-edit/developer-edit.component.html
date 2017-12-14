@@ -1,0 +1,28 @@
+<div class="row" *ngIf="editMode; else newDeveloperTitle">
+  <h2>Editing {{ developer.name }}</h2>
+</div>
+
+<ng-template #newDeveloperTitle>
+  <div class="row">
+    <h2>Creating new developer</h2>
+  </div>
+</ng-template>
+
+<div class="row">
+  <label for="developerName">Name</label>
+  <input type="text" class="form-control" id="developerName"
+    required
+    [(ngModel)]="developer.name" name="name">
+</div>
+
+<div class="row">
+  <label for="developerFounded">Founded</label>
+  <input type="number" class="form-control" id="developerFounded"
+    required
+    [(ngModel)]="developer.founded" name="founded">
+</div>
+
+<div class="row btn-group">
+  <button type="button" class="btn btn-primary" (click)="onSaveChanges()">Save Changes</button>
+  <button type="button" class="btn btn-default" (click)="onCancel()">Cancel</button>
+</div>

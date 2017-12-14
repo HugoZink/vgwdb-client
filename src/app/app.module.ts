@@ -28,6 +28,7 @@ import { DeveloperListComponent } from './components/developers/developer-list/d
 import { DeveloperItemComponent } from './components/developers/developer-list/developer-item/developer-item.component';
 import { DeveloperService } from './services/developer.service';
 import { DeveloperDetailsComponent } from './components/developers/developer-details/developer-details.component';
+import { DeveloperEditComponent } from './components/developers/developer-edit/developer-edit.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { DeveloperDetailsComponent } from './components/developers/developer-det
     DeveloperListComponent,
     DeveloperItemComponent,
     DeveloperDetailsComponent,
+    DeveloperEditComponent,
   ],
   imports: [
     BrowserModule,

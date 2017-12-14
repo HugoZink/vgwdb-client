@@ -8,6 +8,15 @@ export class Developer {
         Object.assign(this, values);
     }
 
+    public toObject() {
+        return {
+            id: this.id,
+            name: this.name,
+            founded: this.founded,
+            games: this.games
+        };
+    }
+
     public get id(): number {
         return this._id;
     }

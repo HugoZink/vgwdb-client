@@ -40,4 +40,14 @@ export class DeveloperDetailsComponent implements OnInit, OnDestroy {
     this.router.navigate(['/developers']);
   }
 
+  onEdit() {
+    this.router.navigate(['edit'], {relativeTo: this.route});
+  }
+
+  onDelete() {
+    if(confirm('Are you sure you want to delete this developer?')) {
+      this.developerService.deleteDeveloper(this.developer);
+      this.router.navigate(['/developers']);
+    }
+  }
 }

@@ -29,4 +29,7 @@ export class DeveloperListComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
+  onAddDeveloper() {
+    this.router.navigate(['new'], {relativeTo: this.route});
+  }
 }

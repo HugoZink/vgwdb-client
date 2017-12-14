@@ -12,6 +12,7 @@ import { ManufacturerEditComponent } from './components/manufacturers/manufactur
 import { DeveloperListComponent } from './components/developers/developer-list/developer-list.component';
 import { DeveloperDetailsComponent } from './components/developers/developer-details/developer-details.component';
 import { GameEditComponent } from './components/games/game-edit/game-edit.component';
+import { DeveloperEditComponent } from './components/developers/developer-edit/developer-edit.component';
 
 const appRoutes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
@@ -28,10 +29,13 @@ const appRoutes: Routes = [
   ]},
   { path: 'developers', component: DeveloperListComponent, children: [
     {
+      path: 'new', component: DeveloperEditComponent
+    },
+    {
       path: ':id', component: DeveloperDetailsComponent
     },
     {
-      path: ':id/edit', component: ManufacturerEditComponent
+      path: ':id/edit', component: DeveloperEditComponent
     }
   ]},
   { path: 'weapons', component: WeaponListComponent, children: [
