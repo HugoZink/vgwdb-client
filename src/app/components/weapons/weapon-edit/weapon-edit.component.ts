@@ -153,7 +153,12 @@ export class WeaponEditComponent implements OnInit, OnDestroy {
   }
 
   onCancel() {
-    this.router.navigate(['/weapons/' + this.weapon.id]);
+    if(this.editMode) {
+      this.router.navigate(['/weapons/' + this.weapon.id]);
+    }
+    else {
+      this.router.navigate(['/weapons']);
+    }
   }
 
 }

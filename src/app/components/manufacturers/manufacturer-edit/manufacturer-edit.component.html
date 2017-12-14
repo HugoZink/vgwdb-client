@@ -1,3 +1,28 @@
-<p>
-  manufacturer-edit works!
-</p>
+<div class="row" *ngIf="editMode; else newManufacturerTitle">
+  <h2>Editing {{ manufacturer.name }}</h2>
+</div>
+
+<ng-template #newManufacturerTitle>
+  <div class="row">
+    <h2>Creating new manufacturer</h2>
+  </div>
+</ng-template>
+
+<div class="row">
+  <label for="manufacturerName">Name</label>
+  <input type="text" class="form-control" id="manufacturerName"
+    required
+    [(ngModel)]="manufacturer.name" name="name">
+</div>
+
+<div class="row">
+  <label for="manufacturerFounded">Founded</label>
+  <input type="number" class="form-control" id="manufacturerFounded"
+    required
+    [(ngModel)]="manufacturer.founded" name="founded">
+</div>
+
+<div class="row btn-group">
+  <button type="button" class="btn btn-primary" (click)="onSaveChanges()">Save Changes</button>
+  <button type="button" class="btn btn-default" (click)="onCancel()">Cancel</button>
+</div>

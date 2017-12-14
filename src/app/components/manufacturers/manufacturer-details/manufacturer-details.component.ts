@@ -40,4 +40,14 @@ export class ManufacturerDetailsComponent implements OnInit, OnDestroy {
     this.router.navigate(['/weapons']);
   }
 
+  onEdit() {
+    this.router.navigate(['edit'], {relativeTo: this.route});
+  }
+
+  onDelete() {
+    if(confirm('Are you sure you want to delete this manufacturer?')) {
+      this.manufacturerService.deleteManufacturer(this.manufacturer);
+      this.router.navigate(['/manufacturers']);
+    }
+  }
 }

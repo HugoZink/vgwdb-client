@@ -93,7 +93,12 @@ export class GameEditComponent implements OnInit, OnDestroy {
   }
 
   onCancel() {
-    this.router.navigate(['/games/' + this.game.id]);
+    if(this.editMode) {
+      this.router.navigate(['/games/' + this.game.id]);
+    }
+    else {
+      this.router.navigate(['/games']);
+    }
   }
 
 }

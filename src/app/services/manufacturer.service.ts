@@ -51,6 +51,54 @@ export class ManufacturerService {
     );
   }
 
+  public createManufacturer(manufacturer: Manufacturer) {
+    this.httpClient.post(this.serverUrl, manufacturer.toObject())
+    .subscribe(
+      (manufacturer: Manufacturer) => {
+        this.manufacturers.push(manufacturer);
+
+        //Notify observers that the data has changed
+        this.dataSub.next(this.manufacturers);
+      }
+    );
+  }
+
+  public updateManufacturer(manufacturer: Manufacturer) {
+    let url = this.serverUrl + '/' + manufacturer.id;
+
+    this.httpClient.put(url, manufacturer)
+    .subscribe(
+      (manufacturer: Manufacturer) => {
+        this.onPutResponse(manufacturer);
+      }
+    );
+  }
+
+  private onPutResponse(manufacturer: Manufacturer) {
+    //Replace manufacturer with the one we got from the server
+    let index = this.manufacturers.findIndex(m => m.id == manufacturer.id);
+
+    this.manufacturers[index] = manufacturer;
+
+    this.dataSub.next(this.manufacturers);
+  }
+
+  public deleteManufacturer(manufacturer: Manufacturer) {
+    let url = this.serverUrl + '/' + manufacturer.id;
+
+    this.httpClient.delete(url)
+    .subscribe(
+      () => {
+        //Delete manufacturer from array
+        let index = this.manufacturers.findIndex(m => m.id == manufacturer.id);
+      
+        this.manufacturers.splice(index, 1);
+  
+        this.dataSub.next(this.manufacturers);
+      }
+    );
+  }
+
   //
   //
   //

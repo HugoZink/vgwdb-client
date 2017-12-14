@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Manufacturer } from '../../../models/manufacturer.model';
 import { ManufacturerService } from '../../../services/manufacturer.service';
 import { Subscription } from 'rxjs/Subscription';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-manufacturer-list',
@@ -14,7 +15,7 @@ export class ManufacturerListComponent implements OnInit, OnDestroy {
 
   subscription: Subscription;
 
-  constructor(private manufacturerService: ManufacturerService) { }
+  constructor(private manufacturerService: ManufacturerService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.manufacturers = this.manufacturerService.getManufacturers();
@@ -27,5 +28,9 @@ export class ManufacturerListComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() : void {
     this.subscription.unsubscribe();
+  }
+
+  onAddManufacturer() {
+    this.router.navigate(['new'], {relativeTo: this.route});
   }
 }

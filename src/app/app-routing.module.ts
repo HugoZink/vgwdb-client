@@ -47,6 +47,9 @@ const appRoutes: Routes = [
   ]},
   { path: 'manufacturers', component: ManufacturerListComponent, children: [
     {
+      path: 'new', component: ManufacturerEditComponent
+    },
+    {
       path: ':id', component: ManufacturerDetailsComponent
     },
     {
