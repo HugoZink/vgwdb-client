@@ -1,8 +1,6 @@
-//
-// Domain class
-//
+import { Model } from './model.interface';
 
-export class Game {
+export class Game implements Model {
 
   private _id: number;
   private _name: string;

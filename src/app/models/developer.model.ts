@@ -1,4 +1,6 @@
-export class Developer {
+import { Model } from './model.interface';
+
+export class Developer implements Model {
     private _id: number;
     private _name: string;
     private _founded: number;
