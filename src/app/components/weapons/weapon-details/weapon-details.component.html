@@ -18,6 +18,10 @@
 <div class="row">
   <h2>{{ weapon.name }}</h2>
 
+  <p class="weaponImage" *ngIf="weapon.imagePath">
+    <img [src]="weapon.imagePath" [alt]="weapon.name">
+  </p>
+
   <p>{{ weapon.description }}</p>
 
   <p>Designed in {{ weapon.designed }}. Manufactured by <a routerLink="/manufacturers/{{ weapon.manufacturer.id }}">{{ weapon.manufacturer.name }}.</a></p>

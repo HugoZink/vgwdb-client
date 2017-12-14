@@ -7,6 +7,7 @@ export class Weapon {
   private _id: number;
   private _name: string;
   private _description: string;
+  private _imagePath: string;
   private _designed: string;
   private _manufacturer;
   private _games;
@@ -21,6 +22,7 @@ export class Weapon {
       id: this.id,
       name: this.name,
       description: this.description,
+      imagePath: this.imagePath,
       designed: this.designed,
       manufacturer: this.manufacturer,
       games: this.games
@@ -49,6 +51,14 @@ export class Weapon {
 
   public set description(d: string) {
     this._description = d;
+  }
+
+  public get imagePath(): string {
+    return this._imagePath;
+  }
+
+  public set imagePath(i: string) {
+    this._imagePath = i;
   }
 
   public get designed(): string {

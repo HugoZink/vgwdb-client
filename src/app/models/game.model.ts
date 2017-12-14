@@ -8,6 +8,7 @@ export class Game {
   private _name: string;
   private _released: number;
   private _description: string;
+  private _imagePath: string;
   private _developer;
   private _weapons;
 
@@ -22,6 +23,7 @@ export class Game {
       name: this.name,
       released: this.released,
       description: this.description,
+      imagePath: this.imagePath,
       developer: this.developer,
       weapons: this.weapons
     };
@@ -49,6 +51,14 @@ export class Game {
 
   public set description(d: string) {
     this._description = d;
+  }
+
+  public get imagePath(): string {
+    return this._imagePath;
+  }
+
+  public set imagePath(i: string) {
+    this._imagePath = i;
   }
 
   public get released(): number {
