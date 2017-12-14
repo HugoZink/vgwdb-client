@@ -25,7 +25,13 @@
 
 <p>Developed by <a routerLink="/developers/{{ game.developer.id }}">{{ game.developer.name }}</a> in {{ game.released }}.</p>
 
-<p>Features the following weapons:</p>
-<ul>
-    <li *ngFor="let weapon of game.weapons"><a routerLink="/weapons/{{ weapon.id }}">{{ weapon.name }} (as {{ weapon.ingameName }})</a></li>
-</ul>
+<div *ngIf="game.weapons.length > 0; else noWeapons">
+    <p>Features the following weapons:</p>
+    <ul>
+        <li *ngFor="let weapon of game.weapons"><a routerLink="/weapons/{{ weapon.id }}">{{ weapon.name }} (as {{ weapon.ingameName }})</a></li>
+    </ul>
+</div>
+
+<ng-template #noWeapons>
+    <p>This game does not appear to feature any real-life weapons.</p>
+</ng-template>
